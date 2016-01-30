@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Topic Schema
  */
 var TopicSchema = new Schema({
-	name: {type: String, required: true},
+	topic: {type: String, required: true},
 	significance: Number
 });
 
@@ -27,6 +27,12 @@ var ResourceSchema = new Schema({
 	subtitle: {
 		type: String,
 		default: '',
+		trim: true
+	},
+	type: {
+		type: String,
+		default: '',
+		required: true,
 		trim: true
 	},
 	url: {

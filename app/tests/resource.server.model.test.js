@@ -8,11 +8,6 @@ var should = require('should'),
 	Resource = mongoose.model('Resource');
 
 /**
- * Globals
- */
-var resource;
-
-/**
  * Unit tests
  */
 describe('Resource Model Unit Tests:', function() {

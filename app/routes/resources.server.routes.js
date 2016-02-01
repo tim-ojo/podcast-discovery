@@ -2,13 +2,17 @@
 
 module.exports = function(app) {
 	var resources = require('../controllers/resources.server.controller');
+	var users = require('../controllers/users.server.controller');
 
 	app.route('/resources')
 					.get(resources.list)
-					.post(resources.create);
+					.post(users.requiresLogin, resources.create);
+					//.post(resources.create);
 
 	app.route('/resources/:resourceId')
 					.get(resources.read)
-					.put(resources.update)
-					.delete(resources.delete);
+					.put(users.requiresLogin, resources.update)
+					.delete(users.requiresLogin, resources.delete);
+					//.put(resources.update)
+					//.delete(resources.delete);
 };

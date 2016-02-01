@@ -5,8 +5,7 @@
  */
 var mongoose = require('mongoose'),
   Resource = mongoose.model('Resource'),
-  errorHandler = require('./errors.server.controller'),
-    _ = require('lodash');
+  errorHandler = require('./errors.server.controller');
 
 /**
  * Create a Resource
@@ -29,7 +28,7 @@ exports.create = function(req, res) {
  * Get a Resource by Id
  */
 exports.read = function(req, res) {
-  Resource.findById(req.param.resourceId).exec(function(err, resource){
+  Resource.findById(req.params.resourceId).exec(function(err, resource){
     if (err)
     {
       return res.status(400).send({
@@ -50,36 +49,32 @@ exports.read = function(req, res) {
  * Update a Resource
  */
 exports.update = function(req, res) {
-  var resource = req.resource;
+  var resource = req.body;
 
-  resource = _.extend(resource, req.body);
-
-  resource.save(function(err) {
-		if (err) {
+  Resource.update({_id: req.params.resourceId}, resource, {}, function(err, msg){
+    if (err) {
 			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
+				message: 'Unable to update document requested'
 			});
 		} else {
 			res.json(resource);
 		}
-	});
+  });
 };
 
 /**
  * Delete a Resource
  */
 exports.delete = function(req, res) {
-  var resource = req.resource;
-
-	resource.remove(function(err) {
-		if (err) {
+  Resource.findOneAndRemove({_id: req.params.resourceId}, {}, function(err, doc, result){
+    if (err) {
 			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
+				message: 'Unable to remove document requested'
 			});
 		} else {
-			res.json(resource);
+			res.json(doc);
 		}
-	});
+  });
 };
 
 /**

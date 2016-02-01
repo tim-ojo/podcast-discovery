@@ -5,8 +5,7 @@
  */
 var mongoose = require('mongoose'),
     Entry = mongoose.model('Entry'),
-    errorHandler = require('./errors.server.controller'),
-    _ = require('lodash');
+    errorHandler = require('./errors.server.controller');
 
 /**
  * Create an Entry
@@ -29,7 +28,7 @@ exports.create = function(req, res) {
  * Get an Entry By Id
  */
 exports.read = function(req, res) {
-  Entry.findById(req.param.entryId).exec(function(err, entry){
+  Entry.findById(req.params.entryId).exec(function(err, entry){
     if (err)
     {
       return res.status(400).send({
@@ -50,36 +49,32 @@ exports.read = function(req, res) {
  * Update an Entry
  */
 exports.update = function(req, res) {
-  var entry = req.entry;
+  var entry = req.body;
 
-  entry = _.extend(entry, req.body);
-
-  entry.save(function(err) {
-		if (err) {
+  Entry.update({_id: req.params.entryId}, entry, {}, function(err, msg){
+    if (err) {
 			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
+				message: 'Unable to update document requested'
 			});
 		} else {
 			res.json(entry);
 		}
-	});
+  });
 };
 
 /**
  * Delete an Entry
  */
 exports.delete = function(req, res) {
-  var entry = req.entry;
-
-	entry.remove(function(err) {
-		if (err) {
+  Entry.findOneAndRemove({_id: req.params.entryId}, {}, function(err, doc, result){
+    if (err) {
 			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
+				message: 'Unable to remove document requested'
 			});
 		} else {
-			res.json(entry);
+			res.json(doc);
 		}
-	});
+  });
 };
 
 /**

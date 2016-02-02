@@ -8,8 +8,8 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
 		// Home state routing
 		$stateProvider.
-		state('home', {
-			url: '/',
+		state('sample_home', {
+			url: '/core',
 			templateUrl: 'modules/core/views/home.client.view.html'
 		});
 	}

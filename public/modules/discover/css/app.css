@@ -1,0 +1,158 @@
+/* app css stylesheet */
+
+/*---------------------------------------
+Navbar
+-----------------------------------------*/
+
+.navbar
+{
+  background: #fff;/*To try out the greenish look use: 52bdb4*/
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .05), 0 1px 0 rgba(0, 0, 0, .05);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .05), 0 1px 0 rgba(0, 0, 0, .05);
+  border: none;
+  border-radius: 0;
+}
+
+.navbar .navbar-brand
+{
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 14px;
+
+  float: none;
+  line-height: 46px;
+  height: auto!important;
+  padding: 0 0 0 14px
+}
+
+/*---------------------------------------
+Body
+-----------------------------------------*/
+body
+{
+  /* white */
+  background: #fff;
+  /* white smoke */
+  background-color: #F5F5F5;
+
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+
+  height  : 100%;
+  overflow: auto;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.centering {
+  float:none;
+  margin:0 auto;
+}
+
+.jumbotron
+{
+  background: none;
+}
+.jumbotron h1
+{
+  margin-bottom: 10px;
+}
+
+.form-control:focus {
+    border-color: #1d89cf;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.input-lg,
+.btn-lg
+{
+  border-radius: 3px;
+}
+
+.btn-lg {
+  margin: 5px;
+}
+
+#search-more-opts {
+  margin-top: 50px;
+}
+
+.btn-info,
+.btn-info:focus {
+    border-color: #1a7ab9;
+    border-bottom-color: #16689e;
+    background: #1d89cf;
+    background-image: -webkit-linear-gradient(top, #1e8cd3 0, #1a7ab9 100%);
+    background-image: linear-gradient(to bottom, #1e8cd3 0, #1a7ab9 100%);
+    background-repeat: repeat-x
+}
+
+.btn-info:hover {
+    color: #fff;
+    border-color: #1871ab;
+    border-bottom-color: #12547e;
+    background: #1a7ab9!important;
+    background-image: -webkit-linear-gradient(top, #1c83c6 0, #1871ab 100%)!important;
+    background-image: linear-gradient(to bottom, #1c83c6 0, #1871ab 100%)!important;
+    background-repeat: repeat-x
+}
+
+.btn-success,
+.btn-success:focus {
+    border-color: #44b2a8;
+    border-bottom-color: #3b9c93;
+    background: #52bdb4;
+    background-image: -webkit-linear-gradient(top, #56beb6 0, #44b2a8 100%);
+    background-image: linear-gradient(to bottom, #56beb6 0, #44b2a8 100%);
+    background-repeat: repeat-x
+}
+
+.btn-success:hover {
+    color: #fff;
+    border-color: #40a79e;
+    border-bottom-color: #31827b;
+    background: #44b2a8!important;
+    background-image: -webkit-linear-gradient(top, #4bbab1 0, #40a79e 100%)!important;
+    background-image: linear-gradient(to bottom, #4bbab1 0, #40a79e 100%)!important;
+    background-repeat: repeat-x
+}
+
+/*-----------------------------------------
+Search Box
+-----------------------------------------*/
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 18px;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }

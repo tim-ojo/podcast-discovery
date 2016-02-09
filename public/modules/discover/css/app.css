@@ -156,3 +156,11 @@ Search Box
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
+
+/*-----------------------------------------
+Sign-in page
+-----------------------------------------*/
+.undecorated-link {
+  margin-left: 10px;
+  margin-right: 10px;
+}

@@ -25,23 +25,30 @@ var validateLocalStrategyPassword = function(password) {
  * User Schema
  */
 var UserSchema = new Schema({
+	displayName: {type: String, required: true},
 	github : {
     id           : String,
     token        : String,
     email        : String,
-    name         : String
+    firstName    : String,
+		lastName     : String,
+		displayName  : String
   },
 	google : {
     id           : String,
     token        : String,
     email        : String,
-    name         : String
+    firstName    : String,
+		lastName     : String,
+		displayName  : String
   },
 	linkedin : {
     id           : String,
     token        : String,
     email        : String,
-    name         : String
+    firstName    : String,
+		lastName     : String,
+		displayName  : String
   },
 });
 

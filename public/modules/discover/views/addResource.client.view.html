@@ -1,0 +1,69 @@
+<div class="row" data-ng-controller="AddResourceController">
+  <div class="col-lg-12">
+    <h2>Add a Podcast</h2>
+  </div>
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="form-horizontal" role="form" ng-submit="addResource()">
+
+          <div class="form-group">
+            <label for="title" class="col-md-2 control-label">Podcast Title</label>
+            <div class="col-md-10">
+              <input type="text" ng-model="resource.title" class="form-control" id="title" placeholder="Podcast name here" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subtitle" class="col-md-2 control-label">Podcast Tagline</label>
+            <div class="col-md-10">
+              <input type="text" ng-model="resource.subtitle" class="form-control" id="subtitle" placeholder="Podcast subtitle or tagline here (Optional)" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="type" class="col-md-2 control-label">Type</label>
+            <div class="col-md-10">
+              <select ng-model="selectedResourceType" ng-options="type.id as type.name for type in resourceTypes">
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="url" class="col-md-2 control-label">URL</label>
+            <div class="col-md-10">
+              <input type="text" ng-model="resource.url" class="form-control" id="url" placeholder="Podcast website" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="feedUrl" class="col-md-2 control-label">RSS Feed</label>
+            <div class="col-md-10">
+              <input type="text" ng-model="resource.feedUrl" class="form-control" id="feedUrl" placeholder="URL of the RSS Feed for the website" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description" class="col-md-2 control-label">Podcast Description</label>
+            <div class="col-md-10">
+              <input type="text" ng-model="resource.description" class="form-control" id="description" placeholder="Enter a description (Optional)" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="authors" class="col-md-2 control-label">Hosts</label>
+            <div class="col-md-10">
+              <input type="text" ng-model="resource.authors" class="form-control" id="authors" placeholder="Comma separated list of podcast hosts (Optional)" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="topics" class="col-md-2 control-label">Topics</label>
+            <div class="col-md-10">
+              <input type="text" ng-model="userTopics" class="form-control" id="topics" placeholder="Comma separated list of topics frequently covered by the show (Optional)" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <input type="submit" class="btn btn-primary" value="Save" />
+            </div>
+          </div>
+          
+        </div> <!-- end form -->
+      </div><!-- end panel-body -->
+    </div><!-- end panel -->
+  </div><!-- end col-lg-12 -->
+</div><!-- end row -->

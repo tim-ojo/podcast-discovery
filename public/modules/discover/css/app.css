@@ -133,6 +133,27 @@ body
 }
 
 /*-----------------------------------------
+Text boxes
+-----------------------------------------*/
+input[type="text"],
+textarea.form-control
+{
+  display: block;
+  margin: 0;
+  width: 100%;
+  box-shadow: none;
+  border-radius: 1px;
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+/*input[type="text"]:focus {
+  outline: none;
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}*/
+
+/*-----------------------------------------
 Search Box
 -----------------------------------------*/
 

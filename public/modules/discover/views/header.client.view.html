@@ -19,7 +19,9 @@
             <a href="/#!/new"><span class="glyphicon glyphicon-plus"></span> Add New</a>
           </li>
           <li data-ng-show="authentication.user">
-            <a href="#"><span class="glyphicon glyphicon-user"></span> <span data-ng-bind="authentication.user.displayName"></span></a>
+            <a>
+              <span class="glyphicon glyphicon-user"></span> <span data-ng-bind="authentication.user.displayName"></span>
+            </a>
           </li>
         </ul> <!-- end navbar right menu -->
       </div>

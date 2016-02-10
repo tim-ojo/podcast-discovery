@@ -24,7 +24,7 @@ exports.signup = function(req, res) {
 	user.provider = 'local';
 	user.displayName = user.firstName + ' ' + user.lastName;
 
-	// Then save the user 
+	// Then save the user
 	user.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -91,10 +91,44 @@ exports.oauthCallback = function(strategy) {
 					return res.redirect('/#!/signin');
 				}
 
-				return res.redirect(redirectURL || '/');
+				return res.redirect(redirectURL || '/#!/');
 			});
 		})(req, res, next);
 	};
+};
+
+/**
+ * Google OAuth login
+ */
+exports.saveGoogleUser = function(req, googleUserProfile, done) {
+	User.findOne({ 'google.id' : googleUserProfile.id }, function(err, user) {
+    if (err)
+        return done(err);
+
+    if (user) {
+        // if a user is found, log them in
+        return done(null, user);
+    } else {
+        // if the user isnt in our database, create a new user
+        var newUser          = new User();
+
+        // set all of the relevant information
+				newUser.displayName = googleUserProfile.firstName;
+        newUser.google.id    = googleUserProfile.id;
+        newUser.google.token = googleUserProfile.token;
+        newUser.google.firstName  = googleUserProfile.firstName;
+        newUser.google.lastName  = googleUserProfile.lastName;
+        newUser.google.displayName  = googleUserProfile.displayName;
+        newUser.google.email = googleUserProfile.email; // pull the first email
+
+        // save the user
+        newUser.save(function(err) {
+            if (err)
+                throw err;
+            return done(null, newUser);
+        });
+      }
+  });
 };
 
 /**

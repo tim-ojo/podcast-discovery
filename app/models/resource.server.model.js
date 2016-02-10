@@ -76,6 +76,10 @@ var ResourceSchema = new Schema({
 	createdOn: {
 		type: Date,
 		default: Date.now
+	},
+	lastModifiedOn: {
+		type: Date,
+		default: Date.now
 	}
 });
 

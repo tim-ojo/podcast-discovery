@@ -133,7 +133,7 @@ body
 }
 
 /*-----------------------------------------
-Text boxes
+Form Stuff
 -----------------------------------------*/
 input[type="text"],
 textarea.form-control
@@ -147,12 +147,28 @@ textarea.form-control
   border: solid 1px #dcdcdc;
   transition: box-shadow 0.3s, border 0.3s;
 }
-/*input[type="text"]:focus {
-  outline: none;
-  border: solid 1px #707070;
-  box-shadow: 0 0 5px 1px #969696;
-}*/
 
+.btn.outline {
+    background: none;
+    padding: 10px 20px;
+}
+.btn-default.outline {
+    border: 1px solid #0099cc;
+    color: #0099cc;
+}
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: #33a6cc;
+    border-color: #33a6cc;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
+}
+
+.panel {
+  border-radius: 1px;
+}
 /*-----------------------------------------
 Search Box
 -----------------------------------------*/

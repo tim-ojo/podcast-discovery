@@ -10,14 +10,20 @@ angular.module('discover').controller('AddResourceController', ['$scope', 'Resou
     $scope.resource.type = $scope.selectedResourceType.name;
 
     // parse topics and authors if available
+    //TODO
 
     // defaults
-    $scope.createdBy = auth.user._id;
+    $scope.resource.createdBy = auth.user._id;
 
     $scope.addResource = function(){
-      $scope.resource.$save(function(){
+      $scope.resource.$save(function(resp, headers){
         $state.go('home'); // TODO: redirect this to the right place later
-      });
+      },
+      function(err){
+        $scope.errorState = true;
+        //console.log(err);
+      }
+    );
     };
 	}
 ]);

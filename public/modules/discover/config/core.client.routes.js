@@ -15,15 +15,6 @@ angular.module('discover').config(['$stateProvider', '$urlRouterProvider',
         });
 				return $q.reject();
 			}
-			/*
-			if (user) {
-        return $q.when();
-      } else {
-        $timeout(function() {
-          $state.go('new');
-        });
-        return $q.reject();
-      }*/
 		}
 
 		// Home state routing
@@ -40,7 +31,12 @@ angular.module('discover').config(['$stateProvider', '$urlRouterProvider',
 			url: '/new',
 			templateUrl: 'modules/discover/views/addResource.client.view.html',
 			resolve: {authenticate: authenticate}
-		});
+		})
+		.state('all_podcasts', {
+			url: '/podcasts',
+			templateUrl: 'modules/discover/views/allResources.client.view.html'
+		})
+		;
 
 	}
 ]);

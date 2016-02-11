@@ -19,17 +19,17 @@
           </div>
           <div class="form-group" ng-class="{ 'has-error' : addPodcastForm.type.$invalid && !addPodcastForm.type.$pristine}">
             <label for="type" class="control-label">Type</label>
-            <!-- <select ng-model="selectedResourceType" name="type" required>
+            <select ng-model="selectedResourceType" ng-init="selectedResourceType = resourceTypes[0]" name="type" required>
               <option ng-repeat="t in resourceTypes">
                 {{t.id}}
               </option>
-            </select> -->
-            <select name="type"
+            </select>
+            <!--<select name="type"
               ng-model="selectedResourceType"
               ng-options="resType.name for resType in resourceTypes"
               ng-init="selectedResourceType = resourceTypes[0]"
               required>
-            </select>
+            </select>-->
           </div>
           <div class="form-group" ng-class="{ 'has-error' : addPodcastForm.url.$invalid && !addPodcastForm.url.$pristine}">
             <label for="url" class="control-label">URL</label>
@@ -45,11 +45,11 @@
           </div>
           <div class="form-group">
             <label for="authors" class="control-label">Hosts</label>
-            <input type="text" ng-model="resource.authors" class="form-control" name="authors" placeholder="Comma separated list of podcast hosts (Optional)" />
+            <input type="text" ng-model="authors" class="form-control" name="authors" placeholder="Comma separated list of podcast hosts (Optional)" />
           </div>
           <div class="form-group">
             <label for="topics" class="control-label">Topics</label>
-            <input type="text" ng-model="userTopics" class="form-control" name="topics" placeholder="Comma separated list of topics frequently covered by the show (Optional)" />
+            <input type="text" ng-model="topics" class="form-control" name="topics" placeholder="Comma separated list of topics frequently covered by the show (Optional)" />
           </div>
           <input type="submit" class="btn btn-default outline" value="Save" ng-click="addResource()" ng-disabled="addPodcastForm.$invalid"/>
 

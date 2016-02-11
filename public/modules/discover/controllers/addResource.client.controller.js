@@ -9,13 +9,30 @@ angular.module('discover').controller('AddResourceController', ['$scope', 'Resou
     $scope.selectedResourceType = $scope.resourceTypes[0];
     $scope.resource.type = $scope.selectedResourceType.name;
 
-    // parse topics and authors if available
-    //TODO
-
     // defaults
     $scope.resource.createdBy = auth.user._id;
 
     $scope.addResource = function(){
+
+      // parse topics and authors if available
+      if ($scope.authors && $scope.authors.length > 0){
+        $scope.resource.authors = $scope.authors.split(',');
+      }
+
+      if ($scope.topics && $scope.topics.length > 0){
+        $scope.resource.topics = [];
+        $scope.topics.split(',').forEach(function(topic){
+          if (topic.length > 0)
+          {
+            var newTopic = {
+              topic: topic.toLowerCase(),
+              significance: 0.9
+            };
+            $scope.resource.topics.push(newTopic);
+          }
+        });
+      }
+
       $scope.resource.$save(function(resp, headers){
         $state.go('home'); // TODO: redirect this to the right place later
       },

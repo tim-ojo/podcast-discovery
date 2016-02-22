@@ -1,0 +1,19 @@
+<ul class="podcasts">
+  <li ng-repeat="podcast in resources | filter:query">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <img ng-src="{{podcast.artworkUrl ? podcast.artworkUrl : 'modules/discover/img/orange_podcast_icon.png'}}"
+            alt="{{podcast.title}}" height="180px" width="180px" class="wrap">
+            <h4>{{podcast.title}}</h4>
+            <p>
+              {{podcast.subtitle}}
+            </p>
+          </div> <!-- end col-md-12 -->
+        </div> <!-- end row-->
+
+      </div> <!-- emd panel-body -->
+    </div><!-- end panel -->
+  </li>
+</ul>

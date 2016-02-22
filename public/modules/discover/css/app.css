@@ -132,6 +132,11 @@ body
     background-repeat: repeat-x
 }
 
+img.wrap {
+  float: left;
+  margin-right: 15px
+}
+
 /*-----------------------------------------
 Form Stuff
 -----------------------------------------*/
@@ -200,4 +205,14 @@ Sign-in page
 .undecorated-link {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+/*-----------------------------------------
+Sign-in page
+-----------------------------------------*/
+ul.podcasts {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /* width: 340px; */
 }

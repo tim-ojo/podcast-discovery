@@ -69,9 +69,9 @@ var ResourceSchema = new Schema({
 		type: [TopicSchema]
 	},
 	createdBy: {
-		type: String,
-		default: '',
-		trim: true
+		type: Schema.Types.ObjectId
+		//default: '',
+		//trim: true
 	},
 	createdOn: {
 		type: Date,

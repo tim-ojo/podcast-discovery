@@ -91,3 +91,41 @@ exports.list = function(req, res) {
     }
   });
 };
+
+/**
+ * List of Resources
+ */
+exports.resourceList = function(req, res) {
+  var page = 1;
+  if(!req.params.page) {
+      page = 1;
+  } else {
+    page = req.params.page;
+  }
+  var per_page = 50;
+
+  Resource.find().sort('title').skip((page-1)*per_page).limit(per_page).exec(function(err, resources){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(resources);
+    }
+  });
+};
+
+/**
+ * Total Count of Resources
+ */
+exports.count = function(req, res) {
+  Resource.count().exec(function(err, val){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json({count : val});
+    }
+  });
+};

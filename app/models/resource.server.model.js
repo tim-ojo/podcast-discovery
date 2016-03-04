@@ -80,6 +80,9 @@ var ResourceSchema = new Schema({
 	lastModifiedOn: {
 		type: Date,
 		default: Date.now
+	},
+	entryCount: {
+		type: Number
 	}
 });
 

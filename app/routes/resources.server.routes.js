@@ -15,4 +15,10 @@ module.exports = function(app) {
 					.delete(users.requiresLogin, resources.delete);
 					//.put(resources.update)
 					//.delete(resources.delete);
+
+	app.route('/resourcesCount')
+					.get(resources.count);
+
+	app.route('/resourceList/:page')
+					.get(resources.resourceList);
 };

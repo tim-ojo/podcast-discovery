@@ -1,7 +1,12 @@
-<div class="row" data-ng-controller="AllResourcesController">
+<div class="row" data-ng-controller="AllResourcesController" data-ng-init="getResources()">
+
   <input ng-model="query" class="form-control input-md novalidate" placeholder="Enter term to filter the results by"/>
+
   <hr />
   <div ng-include="'modules/discover/views/resourceList.client.view.html'">
-
   </div>
+
+  <hr />
+  <pagination total-items="totalItems" items-per-page="50" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+
 </div>

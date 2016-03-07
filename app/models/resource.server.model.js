@@ -4,7 +4,6 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	mongoosastic = require('mongoosastic'),
 	Schema = mongoose.Schema;
 
 /**
@@ -23,16 +22,12 @@ var ResourceSchema = new Schema({
 		type: String,
 		default: '',
 		required: true,
-		trim: true,
-		//es_indexed: true,
-		es_boost:2.0
+		trim: true
 	},
 	subtitle: {
 		type: String,
 		default: '',
-		trim: true,
-		//es_indexed: true,
-		es_boost:2.0
+		trim: true
 	},
 	type: {
 		type: String,
@@ -61,24 +56,17 @@ var ResourceSchema = new Schema({
 	description: {
 		type: String,
 		default: '',
-		trim: true,
-		//es_indexed: true
+		trim: true
 	},
 	lastPublishDate: {
 		type: Date,
 	},
 	authors: {
 		type: [String],
-		default: []//,
-		// es_indexed: true,
-		// es_type: 'nested',
-		// es_include_in_parent: true
+		default: []
 	},
 	topics: {
-		type: [TopicSchema],
-		//es_indexed: true,
-		//es_type: 'nested',
-		//es_include_in_parent: true
+		type: [TopicSchema]
 	},
 	createdBy: {
 		type: Schema.Types.ObjectId
@@ -96,17 +84,5 @@ var ResourceSchema = new Schema({
 	}
 });
 
-/*
-* TODO: I'm duplicating the entire object into elasticsearch for now because I'm not able to make
-* mongoosastic properly index arrays of strings/objects. I need to open a GitHub issue and come back
-* to fix this.
-*/
-
-ResourceSchema.plugin(mongoosastic, {
-	index: 'podcast-discovery',
-	type: 'resource'
-});
-
 mongoose.model('Topic', TopicSchema);
-var Res = mongoose.model('Resource', ResourceSchema),
-	stream = Res.synchronize();
+mongoose.model('Resource', ResourceSchema);

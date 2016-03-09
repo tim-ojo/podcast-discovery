@@ -3,12 +3,14 @@
   <div class="col-md-12" >
     <input ng-model="query" class="form-control input-md" placeholder="Enter term to filter the results by"/>
   </div>
-  
+
   <hr />
   <div class="col-md-12" ng-include="'modules/discover/views/resourceList.client.view.html'">
   </div>
 
   <hr />
-  <pagination total-items="totalItems" items-per-page="50" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+  <div class="col-md-12 pull-right">
+    <pagination total-items="totalItems" items-per-page="50" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+  </div>
 
 </div>

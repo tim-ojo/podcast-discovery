@@ -25,7 +25,7 @@ exports.search = function(req, res) {
     body: {
       query: {
         query_string: {
-          query: req.query.q,
+          query: req.query.q,// + '~1',
           fields: ['_all', 'title^3']
         }
       }
@@ -35,6 +35,9 @@ exports.search = function(req, res) {
         mongoed = 0;
 
     var hits = resp.hits.hits;
+    if (hits.length === 0)
+      res.json(results);
+
     hits.forEach(function(hit){
       var resObj = {
         _id: hit._id,

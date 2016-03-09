@@ -1,14 +1,14 @@
-<div class="centering">
+<div data-ng-controller="HomeController" class="centering">
   <div class="jumbotron">
     <div class="container">
       <h1>Search for<small> ...</small></h1>
       <p>
         keywords, podcast titles, hosts / guests, topics, technologies, episodes, etc.
       </p>
-      <form>
+      <form ng-submit="execSearch()">
         <div class="inner-addon right-addon">
           <i class="glyphicon glyphicon-search"></i>
-          <input class="form-control input-lg search-box"></input>
+          <input class="form-control input-lg search-box" ng-model="query"></input>
         </div>
       </form>
 

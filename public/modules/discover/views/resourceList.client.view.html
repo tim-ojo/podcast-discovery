@@ -1,19 +1,25 @@
 <ul class="podcasts">
-  <li ng-repeat="podcast in resources | filter:query">
+  <li ng-repeat="podcast in items | filter:query">
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-lg-2 col-sm-3 col-xs-5">
             <img ng-src="{{podcast.artworkUrl ? podcast.artworkUrl : 'modules/discover/img/orange_podcast_icon.png'}}"
-            alt="{{podcast.title}}" height="180px" width="180px" class="wrap">
+            alt="{{podcast.title}}" height="180px" width="180px">
+          </div>
+          <div class="col-lg-10 col-sm-9 col-xs-7">
             <h4>{{podcast.title}}</h4>
             <p>
-              {{podcast.subtitle}}
+              {{podcast.subtitle || podcast.description | limitTo: 1000}} {{podcast.description.length > 1000 ? '...' : ''}}
             </p>
-          </div> <!-- end col-md-12 -->
+          </div>
         </div> <!-- end row-->
 
       </div> <!-- end panel-body -->
     </div><!-- end panel -->
   </li>
 </ul>
+
+<div ng-show="items.length == 0">
+  <h4 class="text-center greyed">Nothing found. Please try your search again</h4>
+</div>

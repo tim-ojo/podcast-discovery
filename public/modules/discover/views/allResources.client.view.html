@@ -1,9 +1,11 @@
 <div class="row" data-ng-controller="AllResourcesController" data-ng-init="getResources()">
 
-  <input ng-model="query" class="form-control input-md novalidate" placeholder="Enter term to filter the results by"/>
-
+  <div class="col-md-12" >
+    <input ng-model="query" class="form-control input-md" placeholder="Enter term to filter the results by"/>
+  </div>
+  
   <hr />
-  <div ng-include="'modules/discover/views/resourceList.client.view.html'">
+  <div class="col-md-12" ng-include="'modules/discover/views/resourceList.client.view.html'">
   </div>
 
   <hr />

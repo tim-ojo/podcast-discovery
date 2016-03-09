@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     elasticsearch = require('elasticsearch'),
+    striptags = require('striptags'),
     Entry = mongoose.model('Entry'),
     Resource = mongoose.model('Resource'),
     errorHandler = require('./errors.server.controller');
@@ -52,7 +53,7 @@ exports.search = function(req, res) {
         Entry.findById(hit._id).exec(function(err, entry){
           if (!err) {
             if (entry) {
-              resObj.description = entry.description;
+              resObj.description = striptags(entry.description);
               resObj.publishDate = entry.pubDate;
               resObj.authors = entry.authors;
 
@@ -77,7 +78,7 @@ exports.search = function(req, res) {
         Resource.findById(hit._id).exec(function(err, resource){
           if (!err) {
             if (resource) {
-              resObj.description = resource.description;
+              resObj.description = striptags(resource.description);
               resObj.publishDate = resource.lastPublishDate;
               resObj.authors = resource.authors;
               resObj.artworkUrl = resource.artworkUrl;

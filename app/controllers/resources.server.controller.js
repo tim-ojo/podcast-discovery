@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
   Resource = mongoose.model('Resource'),
+  striptags = require('striptags'),
   errorHandler = require('./errors.server.controller');
 
 /**
@@ -87,6 +88,7 @@ exports.list = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      resources.forEach(function(resource){ resource.subtitle = striptags(resource.subtitle); });
       res.json(resources);
     }
   });
@@ -110,6 +112,7 @@ exports.resourceList = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      resources.forEach(function(resource){ resource.subtitle = striptags(resource.subtitle); });
       res.json(resources);
     }
   });

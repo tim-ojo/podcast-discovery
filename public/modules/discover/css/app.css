@@ -178,6 +178,16 @@ textarea.form-control
 .panel {
   border-radius: 1px;
 }
+
+.podcasts h4 {
+  margin-bottom: 1px;
+}
+.podcasts p {
+  margin-top: 10px;
+}
+.podcasts .label {
+  font-size: 70%;
+}
 /*-----------------------------------------
 Search Box
 -----------------------------------------*/

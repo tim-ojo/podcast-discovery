@@ -1,4 +1,4 @@
-<ul class="podcasts">
+<ul class="podcasts" data-ng-controller="ResourceListController">
   <li ng-repeat="podcast in items | filter:query">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -9,9 +9,19 @@
           </div>
           <div class="col-lg-10 col-sm-9 col-xs-7">
             <h4>{{podcast.title}}</h4>
+            <span class="label" ng-class="podcast.type == 'entry' ? 'label-primary' : 'label-info' ">{{podcast.type | displayType}}</span>
             <p>
-              {{podcast.subtitle || podcast.description | limitTo: 1000}} {{podcast.description.length > 1000 ? '...' : ''}}
+              {{podcast.subtitle || podcast.description | limitTo: descCharCount}} {{podcast.description.length > descCharCount ? '...' : ''}}
             </p>
+            <br>
+            <div class="col-sm-3 greyed">
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+              {{podcast.publishDate || podcast.lastPublishDate | relativeDate }}
+            </div>
+            <div class="col-sm-6 greyed">
+              <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+              {{podcast.authors.join(", ")}}
+            </div>
           </div>
         </div> <!-- end row-->
 

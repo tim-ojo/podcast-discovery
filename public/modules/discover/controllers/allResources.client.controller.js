@@ -3,6 +3,7 @@
 angular.module('discover').controller('AllResourcesController', ['$scope', 'Resources', '$http',
 	function($scope, Resource, $http) {
 		//$scope.items = Resource.query();
+		$scope.enableFilter = true;
 
 		$scope.getResources = function () {
         $http.get('/resourceList/' + $scope.currentPage).success(function (response) {

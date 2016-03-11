@@ -1,5 +1,5 @@
 <ul class="podcasts" data-ng-controller="ResourceListController">
-  <li ng-repeat="podcast in items | filter:query">
+  <li ng-repeat="podcast in items | filter: enableFilter && query">
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="row">
@@ -19,7 +19,8 @@
               {{podcast.publishDate || podcast.lastPublishDate | relativeDate }}
             </div>
             <div class="col-sm-6 greyed">
-              <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-leaf" aria-hidden="true"
+              ng-show="podcast.authors[0] !== ''"></span>
               {{podcast.authors.join(", ")}}
             </div>
           </div>

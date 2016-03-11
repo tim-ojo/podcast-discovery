@@ -59,6 +59,7 @@ exports.search = function(req, res) {
               resObj.description = striptags(entry.description);
               resObj.publishDate = entry.pubDate;
               resObj.authors = entry.authors;
+              resObj.resourceId = entry.resourceId;
 
               Resource.findById(entry.resourceId).exec(function(err, resource){
                 if (!err) {

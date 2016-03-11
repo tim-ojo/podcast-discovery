@@ -141,6 +141,11 @@ img.wrap {
   margin-right: 15px
 }
 
+a.unstyled-link {
+  color: inherit;
+  text-decoration: none;
+}
+
 /*-----------------------------------------
 Form Stuff
 -----------------------------------------*/

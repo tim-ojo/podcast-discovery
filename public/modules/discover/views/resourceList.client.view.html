@@ -8,7 +8,9 @@
             alt="{{podcast.title}}" height="180px" width="180px"></a>
           </div>
           <div class="col-lg-10 col-sm-9 col-xs-7">
-            <h4>{{podcast.title}}</h4>
+            <h4><a href="#!/podcasts/{{podcast.resourceId || podcast._id}}" class="unstyled-link">
+              {{podcast.title}}
+            </a></h4>
             <span class="label" ng-class="podcast.type == 'entry' ? 'label-primary' : 'label-info' ">{{podcast.type | displayType}}</span>
             <p>
               {{podcast.subtitle || podcast.description | limitTo: descCharCount}} {{podcast.description.length > descCharCount ? '...' : ''}}

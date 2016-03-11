@@ -1,8 +1,11 @@
 'use strict';
 
 // Setting up route
-angular.module('discover').config(['$stateProvider', '$urlRouterProvider',
-	function($stateProvider, $urlRouterProvider) {
+angular.module('discover').config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+	function($stateProvider, $urlRouterProvider, $httpProvider) {
+		// enable http caching
+		$httpProvider.defaults.cache = true;
+
 		// Redirect to home view when route not found
 		$urlRouterProvider.otherwise('/');
 
@@ -48,6 +51,10 @@ angular.module('discover').config(['$stateProvider', '$urlRouterProvider',
 		})
 		.state('podcast', {
 			url: '/podcasts/:resourceId',
+			templateUrl: 'modules/discover/views/resource.client.view.html'
+		})
+		.state('podcast_entry', {
+			url: '/podcasts/:resourceId/:entryId',
 			templateUrl: 'modules/discover/views/resource.client.view.html'
 		})
 		;

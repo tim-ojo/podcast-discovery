@@ -65,11 +65,10 @@ exports.search = function(req, res) {
                 if (!err) {
                   if (resource) {
                     resObj.artworkUrl = resource.artworkUrl;
-
-                    if (++mongoed === hits.length) {
-                      res.json(results);
-                    }
                   }
+                }
+                if (++mongoed === hits.length) {
+                  res.json(results);
                 }
               });
 
@@ -77,7 +76,7 @@ exports.search = function(req, res) {
           }
         });
       }
-      else if (hit._type === 'resource')
+      else //if (hit._type === 'resource')
       {
         Resource.findById(hit._id).exec(function(err, resource){
           if (!err) {
@@ -86,11 +85,10 @@ exports.search = function(req, res) {
               resObj.publishDate = resource.lastPublishDate;
               resObj.authors = resource.authors;
               resObj.artworkUrl = resource.artworkUrl;
-
-              if (++mongoed === hits.length) {
-                res.json(results);
-              }
             }
+          }
+          if (++mongoed === hits.length) {
+            res.json(results);
           }
         });
       }

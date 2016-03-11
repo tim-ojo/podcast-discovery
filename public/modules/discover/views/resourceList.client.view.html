@@ -14,14 +14,14 @@
               {{podcast.subtitle || podcast.description | limitTo: descCharCount}} {{podcast.description.length > descCharCount ? '...' : ''}}
             </p>
             <br>
-            <div class="col-sm-3 greyed">
-              <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-              {{podcast.publishDate || podcast.lastPublishDate | relativeDate }}
-            </div>
             <div class="col-sm-6 greyed">
               <span class="glyphicon glyphicon-leaf" aria-hidden="true"
               ng-show="podcast.authors[0] !== ''"></span>
               {{podcast.authors.join(", ")}}
+            </div>
+            <div class="col-sm-3 greyed">
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+              {{podcast.publishDate || podcast.lastPublishDate | relativeDate }}
             </div>
           </div>
         </div> <!-- end row-->

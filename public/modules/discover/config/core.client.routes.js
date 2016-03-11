@@ -37,9 +37,14 @@ angular.module('discover').config(['$stateProvider', '$urlRouterProvider',
 			templateUrl: 'modules/discover/views/allResources.client.view.html'
 		})
 		.state('search', {
-			url: '/search',
+			url: '/search?query',
 			templateUrl: 'modules/discover/views/searchResults.client.view.html',
-			params: {'query' : null}
+			params: {
+				query: {
+					value: '',
+					squash: true
+				}
+			}
 		})
 		.state('podcast', {
 			url: '/podcasts/:resourceId',

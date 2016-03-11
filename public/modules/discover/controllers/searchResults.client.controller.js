@@ -4,7 +4,7 @@ angular.module('discover').controller('SearchResultsController', ['$scope', '$st
 	function($scope, $state, $stateParams, $http) {
 
 		$scope.getSearchResults = function () {
-      if ($stateParams.query !== null)
+      if ($stateParams.query !== '')
       {
         $http.get('/search?q=' + $stateParams.query).success(function (response) {
             $scope.items = response;

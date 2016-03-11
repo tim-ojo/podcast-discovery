@@ -18,14 +18,14 @@ var client = new elasticsearch.Client({
  * search for both podcasts and entries
  */
 exports.search = function(req, res) {
-
+  var fuzzy_query = req.query.q + '~1';
   client.search({
     index: 'podcast-discovery',
     size: 100,
     body: {
       query: {
         query_string: {
-          query: req.query.q,// + '~1',
+          query: fuzzy_query,
           fields: ['_all', 'title^3']
         }
       }

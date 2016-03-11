@@ -2,7 +2,7 @@
 
 angular.module('discover').controller('SearchResultsController', ['$scope', '$state', '$stateParams', '$http',
 	function($scope, $state, $stateParams, $http) {
-		
+
 		$scope.getSearchResults = function () {
       if ($stateParams.query !== null)
       {

@@ -1,0 +1,46 @@
+<div class="row" data-ng-controller="ResourceController">
+  <div class="col-md-12">
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        <div class="col-md-5">
+          <h2>{{resource.title}}</h2>
+          <p>
+            {{resource.subtitle}}
+          </p>
+          <br>
+
+          <p class="greyed">
+            <span class="glyphicon glyphicon-leaf" aria-hidden="true" ng-show="podcast.authors[0] !== ''"></span>
+            {{resource.authors.join(", ")}}
+          </p>
+          <p class="greyed">
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+            {{resource.lastPublishDate | relativeDate }}
+          </p>
+        </div>
+
+        <div class="col-md-7">
+          <img ng-src="{{resource.artworkUrl || 'modules/discover/img/orange_podcast_icon.png'}}"
+          alt="{{resource.title}}" height="200px" width="200px" class="center-block">
+        </div>
+
+        <div class="col-md-12" ng-show="resource.subtitle !== resource.description">
+          <br>
+          <p>
+            {{resource.description}}
+          </p>
+        </div>
+
+        <div class="col-md-6">
+          <p>
+            (List of entries will go here)
+          </p>
+        </div>
+
+      </div> <!-- end panel-body -->
+    </div> <!-- end panel -->
+
+  </div>
+</div>  <!-- end row -->

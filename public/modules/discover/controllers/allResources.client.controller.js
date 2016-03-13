@@ -6,11 +6,11 @@ angular.module('discover').controller('AllResourcesController', ['$scope', 'Reso
 		$scope.enableFilter = true;
 
 		$scope.getResources = function () {
-        $http.get('/resourceList/' + $scope.currentPage).success(function (response) {
+        $http.get('/resource-list/' + $scope.currentPage).success(function (response) {
             $scope.items = response;
         });
 
-				$http.get('/resourcesCount').success(function (response) {
+				$http.get('/resources-count').success(function (response) {
             $scope.totalItems = response.count;
         });
     };

@@ -91,3 +91,18 @@ exports.list = function(req, res) {
     }
   });
 };
+
+/**
+ * List of Entries belonging to a resource
+ */
+exports.getByResourceId = function(req, res) {
+  Entry.find({ resourceId: req.params.resourceId }).exec(function(err, entry){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(entry);
+    }
+  });
+};

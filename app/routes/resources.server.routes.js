@@ -16,9 +16,9 @@ module.exports = function(app) {
 					//.put(resources.update)
 					//.delete(resources.delete);
 
-	app.route('/resourcesCount')
+	app.route('/resources-count')
 					.get(resources.count);
 
-	app.route('/resourceList/:page')
+	app.route('/resource-list/:page')
 					.get(resources.resourceList);
 };

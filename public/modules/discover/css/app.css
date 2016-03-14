@@ -245,9 +245,18 @@ Search Box
 .right-addon input { padding-right: 30px; }
 
 /*-----------------------------------------
-Sign-in page
+Podcast page
 -----------------------------------------*/
-.undecorated-link {
-  margin-left: 10px;
-  margin-right: 10px;
+.resource-entry {
+  max-height: 360px;
+  overflow-y: scroll;
+  border: 1px solid #eee;
+}
+
+.resource-entry-details {
+    padding: 3px 10px
+}
+
+.list-group-item {
+    padding: 3px 10px
 }

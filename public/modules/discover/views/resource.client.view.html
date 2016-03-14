@@ -11,7 +11,7 @@
           </p>
           <br>
 
-          <p class="greyed">
+          <p class="greyed" ng-show="resource.authors[0] !== ''">
             <span class="glyphicon glyphicon-leaf" aria-hidden="true" ng-show="podcast.authors[0] !== ''"></span>
             {{resource.authors.join(", ")}}
           </p>
@@ -32,15 +32,50 @@
           <p>
             {{resource.description}}
           </p>
-          <hr>
         </div>
 
-
+        <div class="col-md-12"><hr></div>
 
         <div class="col-md-6">
-          <p>
-            (List of entries will go here)
-          </p>
+          <div class="list-group resource-entry">
+            <a ng-href="#!/podcasts/{{resource._id}}/{{entry._id}}" ng-repeat="entry in entries" class="list-group-item" ng-class="{'active': entry._id === selectedEntryId}">
+              <h6>{{entry.title}}</h6>
+              <p>
+                <small>{{entry.pubDate | relativeDate}}</small>
+              </p>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-6" id="resource-entry-details">
+          <div class="resource-entry resource-entry-details" ng-show="selectedEntry !== undefined">
+            <h4>{{selectedEntry.title}}</h4>
+            <p class="greyed">
+              {{selectedEntry.pubDate | relativeDate}}
+              {{selectedEntry.authors.join(", ")}}
+            </p>
+
+            <hr>
+
+            <audio ng-src="{{selectedEntry.enclosure | trusted}}" preload="metadata" class="center-block"
+              ng-show="selectedEntry.enclosure.indexOf('.mp3') !== -1 || selectedEntry.enclosure.indexOf('.m4a') !== -1" controls>
+              <p>Your browser does not support the <code>audio</code> element.</p>
+            </audio>
+
+            <video ng-src="{{selectedEntry.enclosure | trusted}}" preload="metadata" class="center-block"
+              ng-show="selectedEntry.enclosure.indexOf('.mp4') !== -1" controls>
+              Your browser does not support the <code>video</code> element.
+            </video>
+
+            <a href="{{selectedEntry.enclosure}}" target="_blank"
+             ng-show="selectedEntry.enclosure.indexOf('.mp3') == -1 && selectedEntry.enclosure.indexOf('.mp4') == -1 && selectedEntry.enclosure.indexOf('.m4a') == -1">
+              <img src="modules/discover/img/play_icon128.png" class="center-block" height="64px" width="64px">
+            </a>
+
+            <hr>
+
+            <div ng-bind-html="selectedEntry.description"></div>
+          </div>
         </div>
 
       </div> <!-- end panel-body -->

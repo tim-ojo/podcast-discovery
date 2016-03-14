@@ -31,6 +31,7 @@
 		"consolidate": "~0.10.0",
 		"swig": "~1.4.1",
 		"striptags": "~2.1.1",
+		"mongodb": "~2.1.7",
 		"mongoose": "~3.8.8",
 		"mongoosastic": "~4.0.2",
 		"passport": "~0.2.0",

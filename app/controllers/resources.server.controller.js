@@ -6,7 +6,16 @@
 var mongoose = require('mongoose'),
   Resource = mongoose.model('Resource'),
   striptags = require('striptags'),
-  errorHandler = require('./errors.server.controller');
+  errorHandler = require('./errors.server.controller'),
+  config = require('../../config/config'),
+  MongoClient = require('mongodb').MongoClient,
+  mongodb;
+
+  MongoClient.connect(config.db, function(err, mongoclient) {
+	  if (!err) {
+			mongodb = mongoclient.db(config.db.split('/').pop());
+		}
+	});
 
 /**
  * Create a Resource
@@ -129,6 +138,23 @@ exports.count = function(req, res) {
       });
     } else {
       res.json({count : val});
+    }
+  });
+};
+
+
+exports.topicList = function(req, res) {
+  var cursor = mongodb.collection('cache').find({ "key": "topics" });
+  cursor.each(function (err, doc){
+    if (err) {
+      return res.status(400).send({
+        message: err.err
+      });
+    } else {
+      if (doc === null)
+        return res.json({});
+      else
+        return res.json(doc);
     }
   });
 };

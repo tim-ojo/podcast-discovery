@@ -21,4 +21,7 @@ module.exports = function(app) {
 
 	app.route('/resource-list/:page')
 					.get(resources.resourceList);
+
+	app.route('/topics')
+					.get(resources.topicList);
 };

@@ -62,7 +62,7 @@
               <p>Your browser does not support the <code>audio</code> element.</p>
             </audio>
 
-            <video ng-src="{{selectedEntry.enclosure | trusted}}" preload="metadata" class="center-block"
+            <video ng-src="{{selectedEntry.enclosure | trusted}}" preload="metadata" class="center-block" width="400px"
               ng-show="selectedEntry.enclosure.indexOf('.mp4') !== -1" controls>
               Your browser does not support the <code>video</code> element.
             </video>

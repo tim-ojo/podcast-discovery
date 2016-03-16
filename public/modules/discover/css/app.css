@@ -261,6 +261,11 @@ Podcast page
     padding: 3px 10px
 }
 
+@media (max-width: 480px) {
+  video {
+    width: 300px;
+  }
+}
 /*-----------------------------------------
 Tags page
 -----------------------------------------*/

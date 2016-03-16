@@ -260,3 +260,21 @@ Podcast page
 .list-group-item {
     padding: 3px 10px
 }
+
+/*-----------------------------------------
+Tags page
+-----------------------------------------*/
+ul.tags {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.tagsLi {
+  display: inline-block;
+  background-color: #2499e6;
+  margin: 4px 2px;
+  padding: 1px 4px;
+  color: #fff;
+  border-radius: 3px;
+}

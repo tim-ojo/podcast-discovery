@@ -102,7 +102,9 @@ exports.getByResourceId = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(entry);
+      res.json(entry.sort(  function(a, b){
+        return (new Date(b.pubDate)) - (new Date(a.pubDate));
+      }));
     }
   });
 };

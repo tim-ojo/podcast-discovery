@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('discover').controller('ResourceController', ['$scope', '$stateParams', '$http', 'Resources',
-	function($scope, $stateParams, $http, Resource) {
+angular.module('discover').controller('ResourceController', ['$scope', '$stateParams', '$http', 'Resources', '$location', '$anchorScroll',
+	function($scope, $stateParams, $http, Resource, $location, $anchorScroll) {
 		$scope.selectedEntryId = $stateParams.entryId;
 		$scope.resource = Resource.get({id: $stateParams.resourceId});
 
@@ -11,8 +11,11 @@ angular.module('discover').controller('ResourceController', ['$scope', '$statePa
 				  return entry._id === $scope.selectedEntryId;
 				})[0];
 				//console.log($scope.selectedEntry);
-				var entryElement = document.getElementById("resource-entry-details");
-				entryElement.scrollIntoView(true);
+				if ($stateParams.entryId !== undefined)
+				{
+					$location.hash("episode");
+					$anchorScroll();
+				}
 		});
 	}
 ]);

@@ -144,7 +144,7 @@ exports.count = function(req, res) {
 
 
 exports.topicList = function(req, res) {
-  var cursor = mongodb.collection('cache').find({ "key": "topics" });
+  var cursor = mongodb.collection('cache').find({ "key": "top-100-topics" });
   cursor.each(function (err, doc){
     if (err) {
       return res.status(400).send({

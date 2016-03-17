@@ -150,7 +150,8 @@ a.unstyled-link {
 Form Stuff
 -----------------------------------------*/
 input[type="text"],
-textarea.form-control
+textarea.form-control,
+input[type="url"]
 {
   display: block;
   margin: 0;

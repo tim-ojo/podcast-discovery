@@ -12,6 +12,10 @@ angular.module('discover').controller('AddResourceController', ['$scope', 'Resou
     // defaults
     $scope.resource.createdBy = auth.user._id;
 
+		$scope.getRss = function(){
+			console.log($scope.resource.feedUrl);
+		};
+
     $scope.addResource = function(){
 
       // parse topics and authors if available

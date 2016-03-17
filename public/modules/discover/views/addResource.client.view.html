@@ -9,6 +9,10 @@
 
           <div class="alert alert-danger" role="alert" ng-show="errorState">There was an error adding this podcast. It may already exist. Ensure all non-optional fields are filled out.</div>
 
+          <div class="form-group" ng-class="{ 'has-error' : addPodcastForm.feedUrl.$invalid && !addPodcastForm.feedUrl.$pristine}">
+            <label for="feedUrl" class="control-label">RSS Feed</label>
+            <input type="url" ng-model="resource.feedUrl" class="form-control" name="feedUrl" placeholder="URL of the RSS Feed for the podcast" ng-change="getRss()" ng-model-options="{updateOn: 'blur'}" required/>
+          </div>
           <div class="form-group" ng-class="{ 'has-error' : addPodcastForm.title.$invalid && !addPodcastForm.title.$pristine}">
             <label for="title" class="control-label">Podcast Title</label>
             <input type="text" ng-model="resource.title" class="form-control" name="title" placeholder="Podcast name here" required/>
@@ -34,10 +38,6 @@
           <div class="form-group" ng-class="{ 'has-error' : addPodcastForm.url.$invalid && !addPodcastForm.url.$pristine}">
             <label for="url" class="control-label">URL</label>
             <input type="url" ng-model="resource.url" class="form-control" name="url" placeholder="Podcast website" required/>
-          </div>
-          <div class="form-group" ng-class="{ 'has-error' : addPodcastForm.feedUrl.$invalid && !addPodcastForm.feedUrl.$pristine}">
-            <label for="feedUrl" class="control-label">RSS Feed</label>
-            <input type="url" ng-model="resource.feedUrl" class="form-control" name="feedUrl" placeholder="URL of the RSS Feed for the website" required/>
           </div>
           <div class="form-group">
             <label for="description" class="control-label">Podcast Description</label>

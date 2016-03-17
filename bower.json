@@ -1,14 +1,14 @@
 {
 	"name": "podcast-discovery",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "Podcast discovery application to help you discover coding podcasts and other resources you'll love. Built on the MEAN stack.",
 	"dependencies": {
 		"bootstrap": "~3",
-		"angular": "~1.2",
+		"angular": "~1.4",
 		"angular-resource": "~1.2",
 		"angular-mocks": "~1.2",
 		"angular-cookies": "~1.2",
-		"angular-animate": "~1.2",
+		"angular-animate": "~1.4",
 		"angular-touch": "~1.2",
 		"angular-sanitize": "~1.2",
 		"angular-bootstrap": "~0.11.2",

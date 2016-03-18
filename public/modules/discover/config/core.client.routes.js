@@ -58,7 +58,7 @@ angular.module('discover').config(['$stateProvider', '$urlRouterProvider', '$htt
 			templateUrl: 'modules/discover/views/resource.client.view.html'
 		})
 		.state('tags', {
-			url: '/podcasts/tags',
+			url: '/topics',
 			templateUrl: 'modules/discover/views/topics.client.view.html'
 		})
 		;

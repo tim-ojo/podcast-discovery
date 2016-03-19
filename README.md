@@ -4,7 +4,7 @@ Podcast Discovery is a web application that allows the user to find and learn ab
 
 The current model for consuming podcasts is to subscribe to a podcaster's feed. However, there is a discoverability problem that is not addressed by this model. If I would like to find a podcast episode that talks about Scala or that features Bob Martin, I don't have a way of doing that. PD aims to solve that problem by giving you powerful episode level search across hundreds of podcasts from a simple interface.
 
-Check it out at [apps.timojo.com/podcastdiscovery](http://apps.timojo.com/podcastdiscovery)
+Check it out at [apps.timojo.com/podcastdiscovery](http://apps.timojo.com/podcastdiscovery) (*Deployment pending March-24-2016*)
 
 ## How it works
 
@@ -12,7 +12,7 @@ Podcast Discovery's UI and backend service is built on the MEAN framework. There
 
 - We do a description / keyword search of iTunes for developer podcasts, filter the results, and import them into our DB
 - We get RSS feeds and download the metadata for the podcast episodes
-- Both the podcast metadata and episode metadata get analyzed for keywords and stored in both MongoDB (our main datastore) and indexed in Elasticsearch 
+- Both the podcast metadata and episode metadata get analyzed for keywords and stored in both MongoDB (our main datastore) and indexed in Elasticsearch
 
 
 ## To Do

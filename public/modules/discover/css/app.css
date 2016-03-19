@@ -13,6 +13,11 @@ Navbar
   border-radius: 0;
 }
 
+.navbar-nav > li
+{
+  border-left: 1px solid #ededed;
+}
+
 .navbar .navbar-brand
 {
   display: inline-block;

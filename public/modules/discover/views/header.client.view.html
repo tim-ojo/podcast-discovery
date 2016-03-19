@@ -20,7 +20,13 @@
           </li>
           <li data-ng-show="authentication.user">
             <a>
-              <span class="glyphicon glyphicon-user"></span> <span data-ng-bind="authentication.user.displayName"></span>
+            <span class="glyphicon glyphicon-user"></span> <span data-ng-bind="authentication.user.displayName"></span>
+            </a>
+
+          </li>
+          <li style="margin: 0px 0px" data-ng-show="authentication.user">
+            <a href="/auth/signout" title="logout">
+              <span class="glyphicon glyphicon-eject"></span>
             </a>
           </li>
         </ul> <!-- end navbar right menu -->

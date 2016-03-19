@@ -132,6 +132,38 @@ exports.saveGoogleUser = function(req, googleUserProfile, done) {
 };
 
 /**
+ * Github OAuth login
+ */
+exports.saveGithubUser = function(req, githubUserProfile, done) {
+	User.findOne({ 'github.id' : githubUserProfile.id }, function(err, user) {
+    if (err)
+        return done(err);
+
+    if (user) {
+        // if a user is found, log them in
+        return done(null, user);
+    } else {
+        // if the user isnt in our database, create a new user
+        var newUser          = new User();
+
+        // set all of the relevant information
+				newUser.displayName = githubUserProfile.displayName;
+        newUser.github.id    = githubUserProfile.id;
+        newUser.github.token = githubUserProfile.token;
+        newUser.github.displayName  = githubUserProfile.displayName;
+        newUser.github.email = githubUserProfile.email; // pull the first email
+
+        // save the user
+        newUser.save(function(err) {
+            if (err)
+                throw err;
+            return done(null, newUser);
+        });
+      }
+  });
+};
+
+/**
  * Helper function to save or update a OAuth user profile
  */
 exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {

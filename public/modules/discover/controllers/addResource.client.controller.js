@@ -15,7 +15,6 @@ angular.module('discover').controller('AddResourceController', ['$scope', 'Resou
 		    else{
 		      var meta = result.feed.meta;
 		      $scope.feedentries = result.feed.entries;
-					console.log($scope.feedentries);
 
 					$scope.resource.title = meta.title;
 					$scope.resource.subtitle = meta['itunes:subtitle']['#'];

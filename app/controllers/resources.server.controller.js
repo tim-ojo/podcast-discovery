@@ -5,17 +5,51 @@
  */
 var mongoose = require('mongoose'),
   Resource = mongoose.model('Resource'),
+  elasticsearch = require('elasticsearch'),
   striptags = require('striptags'),
   errorHandler = require('./errors.server.controller'),
   config = require('../../config/config'),
   MongoClient = require('mongodb').MongoClient,
-  mongodb;
+  mongodb,
+  filteredTopics = ['technology', 'technology/software how-to', 'technology/tech news', 'technology/podcasting', 'technology/gadgets'];
 
-  MongoClient.connect(config.db, function(err, mongoclient) {
-	  if (!err) {
-			mongodb = mongoclient.db(config.db.split('/').pop());
-		}
-	});
+MongoClient.connect(config.db, function(err, mongoclient) {
+  if (!err) {
+		mongodb = mongoclient.db(config.db.split('/').pop());
+	}
+});
+
+var client = new elasticsearch.Client({
+  host: 'localhost:9200'
+});
+
+function isNotInNaughtyList(topic){
+  if (filteredTopics.indexOf(topic) === -1)
+    return true;
+  else
+    return false;
+}
+
+function getTopics(topicObject){
+  return topicObject.topic;
+}
+
+function index(resource) {
+  // index the doc in elasticsearch
+  client.index({
+    index: 'podcast-discovery',
+    type: 'resource',
+    id: resource._id.toString(),
+    body: {
+      title: resource.title,
+      subtitle: resource.subtitle,
+      description: resource.description,
+      authors: resource.authors,
+      topics: resource.topics.map(getTopics).filter(isNotInNaughtyList)
+    }
+  });
+  // we don't care about failures bcos if it fails the daily indexing process will pick it up
+}
 
 /**
  * Create a Resource
@@ -29,6 +63,7 @@ exports.create = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      index(resource);
       res.status(201).json(resource);
     }
   });
@@ -67,6 +102,7 @@ exports.update = function(req, res) {
 				message: 'Unable to update document requested'
 			});
 		} else {
+      index(resource);
 			res.json(resource);
 		}
   });

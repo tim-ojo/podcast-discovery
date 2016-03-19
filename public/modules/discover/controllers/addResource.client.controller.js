@@ -52,7 +52,7 @@ angular.module('discover').controller('AddResourceController', ['$scope', 'Resou
           if (topic.length > 0)
           {
             var newTopic = {
-              topic: topic.toLowerCase(),
+              topic: topic.toLowerCase().trim(),
               significance: 0.9
             };
             $scope.resource.topics.push(newTopic);

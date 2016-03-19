@@ -1,28 +1,21 @@
 'use strict';
 
-angular.module('discover').controller('AddResourceController', ['$scope', 'Resources', '$state', '$stateParams', 'Authentication', '$window',
-	function($scope, Resource, $state, $stateParams, auth, $window) {
+angular.module('discover').controller('AddResourceController', ['$scope', 'Resources', '$state', 'Authentication', '$window', '$http',
+	function($scope, Resource, $state, auth, $window, $http) {
 		$scope.resource = new Resource();
-
-    // resource type options
-		/*
-    $scope.resourceTypes = [{id: 'podcast-audio', name: 'podcast-audio'}, {id: 'podcast-video', name: 'podcast-video'}];
-    $scope.selectedResourceType = $scope.resourceTypes[0];
-    $scope.resource.type = $scope.selectedResourceType.name;
-		*/
 
     // defaults
     $scope.resource.createdBy = auth.user._id;
 
 		$scope.getRss = function(){
-			console.log($scope.resource.feedUrl);
 			$window.feednami.load($scope.resource.feedUrl, function(result){
 		    if(result.error){
 		      console.log(result.error);
 		    }
 		    else{
 		      var meta = result.feed.meta;
-		      console.log(meta);
+		      $scope.feedentries = result.feed.entries;
+					console.log($scope.feedentries);
 
 					$scope.resource.title = meta.title;
 					$scope.resource.subtitle = meta['itunes:subtitle']['#'];
@@ -40,7 +33,6 @@ angular.module('discover').controller('AddResourceController', ['$scope', 'Resou
 		};
 
     $scope.addResource = function(){
-
       // parse topics and authors if available
       if ($scope.authors && $scope.authors.length > 0){
         $scope.resource.authors = $scope.authors.split(',');
@@ -62,8 +54,22 @@ angular.module('discover').controller('AddResourceController', ['$scope', 'Resou
 
       $scope.resource.$save(function(created, headers){
 				$state.go('podcast', {'resourceId': created._id});
-				//TODO; Go ahead and create the entries and send them as well
-				//TODO: On the server side be sure to index them in Elasticsearch
+
+				var entries = $scope.feedentries.map(function (entry) {
+					var rEntry = {
+						title: entry.title,
+						resourceId: created._id,
+						url: entry.link,
+						enclosure: entry.enclosures[0].url,
+						pubDate: entry.date,
+						description: entry.summary,
+						authors: [entry.author]
+					};
+
+					return rEntry;
+				});
+
+				$http.post('/entries', entries);
       },
       function(err){
         $scope.errorState = true;

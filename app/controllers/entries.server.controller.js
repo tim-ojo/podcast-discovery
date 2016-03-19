@@ -5,7 +5,25 @@
  */
 var mongoose = require('mongoose'),
     Entry = mongoose.model('Entry'),
+    elasticsearch = require('elasticsearch'),
     errorHandler = require('./errors.server.controller');
+
+var client = new elasticsearch.Client({
+  host: 'localhost:9200'
+});
+
+function index(entry) {
+  // index the doc in elasticsearch
+  client.index({
+    index: 'podcast-discovery',
+    type: 'entry',
+    id: entry._id.toString(),
+    body: {
+      title: entry.title
+    }
+  });
+  // we don't care about failures bcos if it fails the daily indexing process will pick it up
+}
 
 /**
  * Create an Entry
@@ -19,9 +37,31 @@ exports.create = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      index(entry);
       res.status(201).json(entry);
     }
   });
+};
+
+/**
+ * Create muliple Entries
+ */
+exports.bulkcreate = function(req, res) {
+  var numSaveAttempts = 0;
+
+  req.body.forEach(function (_entry) {
+    var entry = new Entry(_entry);
+    entry.save(function(err){
+      if (!err){
+        index(entry);
+      }
+      if (++numSaveAttempts === req.body.length)
+        return res.status(201).send({
+          message: 'entries saved'
+        });
+    });
+  });
+
 };
 
 /**

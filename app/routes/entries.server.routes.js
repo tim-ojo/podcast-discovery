@@ -2,9 +2,10 @@
 
 module.exports = function(app) {
 	var entries = require('../controllers/entries.server.controller');
+	var users = require('../controllers/users.server.controller');
 
-	//app.route('/entries')
-	//				.get(entries.list);
+	app.route('/entries')
+					.post(users.requiresLogin, entries.bulkcreate);
 
 	app.route('/entries/:entryId')
 					.get(entries.read);

@@ -15,7 +15,11 @@ db = client['podcast-discovery-dev']
 
 TIMEOUT = 180  # seconds
 work_queue = []
-pdc_oid = ObjectId("56cecf6e4fb411c9ee6074bd") #Id of pd_crawler in Mongo. Should NOT be hard coded
+pdc_oid = None
+
+def getCrawlerOid():
+    res = db.users.find_one({"displayName":"pd_crawler"})
+    return res['_id']
 
 async def addPodcastsToWorkQ(session):
     async def searchItunesForTerm (searchTerm, session):
@@ -45,6 +49,9 @@ async def processWorkQ():
         podcast_feed = await asyncio.wait_for(aiohttp.get(podcast_result['feedUrl']), TIMEOUT)
         podcast_feed_xml = await podcast_feed.text()
         parsed_feed = feedparser.parse(podcast_feed_xml)
+
+        if parsed_feed.channel.language is not None and parsed_feed.channel.language.lower() != 'en-us' and parsed_feed.channel.language.lower() != 'en':
+            return
 
         print('Downloaded RSS Feed for {} from {}. Number of entries is {}'.format(podcast_result['trackName'], podcast_result['feedUrl'], len(parsed_feed.entries)))
 
@@ -95,6 +102,9 @@ async def processWorkQ():
     res, _ = await asyncio.wait([ readRSSAndStore(podcast_result) for podcast_result in work_queue ])
 
 if __name__ == '__main__':
+    
+    pdc_oid = getCrawlerOid()
+
     loop = asyncio.get_event_loop()
 
     # crawl web, add podcasts to work_queue

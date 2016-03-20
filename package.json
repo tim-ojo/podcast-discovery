@@ -1,7 +1,7 @@
 {
 	"name": "podcast-discovery",
 	"description": "Podcast discovery application to help you discover coding podcasts and other resources you'll love. Built on the MEAN stack.",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"author": "Tim Ojo",
 	"repository": {
 		"type" : "git",
@@ -36,8 +36,6 @@
 		"mongoosastic": "~4.0.2",
 		"passport": "~0.2.0",
 		"passport-local": "~1.0.0",
-		"passport-facebook": "~1.0.2",
-		"passport-twitter": "~1.0.2",
 		"passport-linkedin": "~0.1.3",
 		"passport-google-oauth": "~0.1.5",
 		"passport-github": "~0.1.5",

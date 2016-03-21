@@ -11,7 +11,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 client = MongoClient()
-db = client['podcast-discovery-dev']
+db = client['podcast-discovery']
 
 work_queue = [] # should be declared in __main__?
 pdc_oid = None
@@ -43,7 +43,7 @@ def searchAndAddToWorkQ(searchTerm):
 def readRSSAndStore(podcast_result):
     parsed_feed = feedparser.parse(podcast_result['feedUrl'])
 
-    if parsed_feed.channel.language is not None and parsed_feed.channel.language.lower() != 'en-us' and parsed_feed.channel.language.lower() != 'en':
+    if parsed_feed.channel.get('language') is not None and parsed_feed.channel.language.lower() != 'en-us' and parsed_feed.channel.language.lower() != 'en':
         return
 
     print('Downloaded RSS Feed for {} from {}. Number of entries is {}'.format(podcast_result['trackName'], podcast_result['feedUrl'], len(parsed_feed.entries)))

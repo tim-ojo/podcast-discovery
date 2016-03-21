@@ -13,7 +13,7 @@ from operator import itemgetter
 from elasticsearch import Elasticsearch
 
 client = MongoClient()
-db = client['podcast-discovery-dev']
+db = client['podcast-discovery']
 es = Elasticsearch()
 
 tokenizer = RegexpTokenizer(r'\w+')

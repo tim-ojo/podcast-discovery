@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from time import mktime
 
 client = MongoClient()
-db = client['podcast-discovery-dev']
+db = client['podcast-discovery']
 
 cursor = db.resources.find()
 for podcast in cursor:

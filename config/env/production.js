@@ -9,15 +9,15 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
 			],
 			js: [
-				'public/lib/angular/angular.min.js',
-				'public/lib/angular-resource/angular-resource.js', 
-				'public/lib/angular-cookies/angular-cookies.js', 
-				'public/lib/angular-animate/angular-animate.js', 
-				'public/lib/angular-touch/angular-touch.js', 
-				'public/lib/angular-sanitize/angular-sanitize.js', 
-				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
-				'public/lib/angular-ui-utils/ui-utils.min.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js'
+				'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-resource.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-cookies.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-animate.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-touch.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-sanitize.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.js'
 			]
 		},
 		css: 'public/dist/application.min.css',

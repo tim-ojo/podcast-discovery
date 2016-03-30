@@ -4,7 +4,7 @@ Podcast Discovery is a web application that allows the user to find and learn ab
 
 The current model for consuming podcasts is to subscribe to a podcaster's feed. However, there is a discoverability problem that is not addressed by this model. If I would like to find a podcast episode that talks about Scala or that features Bob Martin, I don't have a way of doing that. PD aims to solve that problem by giving you powerful episode level search across hundreds of podcasts from a simple interface.
 
-Check it out at [apps.timojo.com/podcastdiscovery](http://apps.timojo.com/podcastdiscovery) (*Deployment pending March-24-2016*)
+Check it out at [podcastdiscovery.net](http://www.podcastdiscovery.net)
 
 ## How it works
 

@@ -151,6 +151,29 @@ a.unstyled-link {
   text-decoration: none;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  color: #eee;
+  font-size: 11px;
+  padding-top: 5px;
+}
+
+.footer p {
+  margin: 20px;
+}
+
+.footer a {
+  color: #777;
+}
+
 /*-----------------------------------------
 Form Stuff
 -----------------------------------------*/

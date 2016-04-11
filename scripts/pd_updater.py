@@ -36,6 +36,9 @@ for podcast in cursor:
                     "description" : entry.get('summary'),
                     "authors" : [entry.get('author')]
                 })
-                print('Inserted new entry: <{} [{}]> for podcast <{} [{}]>'.format(entry['title'], res.inserted_id, podcast['title'], podcast['_id']))
+                #print('Inserted new entry: <{} [{}]> for podcast <{} [{}]>'.format(entry['title'], res.inserted_id, podcast['title'], podcast['_id']))
             except Exception as e:
-                print('Did not insert entry: {} for podcast {} [{}]'.format(entry['title'], podcast.get('title'), podcast['_id']))
+                #print('Did not insert entry: {} for podcast {} [{}]'.format(entry['title'], podcast.get('title'), podcast['_id']))
+                pass
+
+        print('[{}] Updated podcast {}'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), podcast['title']))

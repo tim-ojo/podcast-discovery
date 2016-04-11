@@ -3,6 +3,7 @@ import re
 import nltk
 import concurrent.futures
 import wikipedia
+import datetime
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from html.parser import HTMLParser
@@ -158,5 +159,9 @@ def analyzeTopics():
     db.cache.update( {"key": "top-100-topics"}, {"key": "top-100-topics", "value": top_100_topics}, True)
 
 if __name__ == '__main__':
+    print('[{}] Started pd_text_analysis'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+
     wikipediaset = loadWikipediaSet()
     analyzeTopics()
+
+    print('[{}] Finished running pd_text_analysis'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))

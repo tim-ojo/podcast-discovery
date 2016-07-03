@@ -16,7 +16,7 @@ angular.module('discover').controller('ResourceController', ['$scope', '$statePa
 				if ($stateParams.entryId !== undefined)
 				{
 					Analytics.trackPage('/podcasts/'+ $stateParams.resourceId + '/' +  $stateParams.entryId,
-						'Podcast: ' + $scope.resource.name + ' > Episode: ' + $scope.selectedEntry.name);
+						'Podcast: ' + $scope.resource.title + ' > Episode: ' + $scope.selectedEntry.title);
 					$location.hash("episode");
 					$anchorScroll();
 				}

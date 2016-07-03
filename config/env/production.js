@@ -18,7 +18,7 @@ module.exports = {
         'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.js',
-				'public/lib/angular-google-analytics/dist/angular-google-analytics.min.js'
+				'https://cdnjs.cloudflare.com/ajax/libs/angular-google-analytics/1.1.7/angular-google-analytics.min.js'
 			]
 		},
 		css: 'public/dist/application.min.css',

@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('discover').controller('ResourceController', ['$scope', '$stateParams', '$http', 'Resources', '$location', '$anchorScroll',
-	function($scope, $stateParams, $http, Resource, $location, $anchorScroll) {
+angular.module('discover').controller('ResourceController', ['$scope', '$stateParams', '$http', 'Resources', '$location', '$anchorScroll', 'Analytics',
+	function($scope, $stateParams, $http, Resource, $location, $anchorScroll, Analytics) {
 		$scope.selectedEntryId = $stateParams.entryId;
 		$scope.resource = Resource.get({id: $stateParams.resourceId});
+
+		Analytics.trackPage('/podcasts/'+$stateParams.resourceId, 'Podcast: ' + $stateParams.resourceId);
 
 		$http.get('/resource-entries/' + $stateParams.resourceId).success(function (response) {
 				$scope.entries = response;
@@ -13,6 +15,8 @@ angular.module('discover').controller('ResourceController', ['$scope', '$statePa
 				//console.log($scope.selectedEntry);
 				if ($stateParams.entryId !== undefined)
 				{
+					Analytics.trackPage('/podcasts/'+ $stateParams.resourceId + '/' +  $stateParams.entryId,
+						'Podcast: ' + $scope.resource.name + ' > Episode: ' + $scope.selectedEntry.name);
 					$location.hash("episode");
 					$anchorScroll();
 				}

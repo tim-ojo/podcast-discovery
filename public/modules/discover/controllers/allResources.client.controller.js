@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('discover').controller('AllResourcesController', ['$scope', 'Resources', '$http', '$window',
-	function($scope, Resource, $http, $window) {
+angular.module('discover').controller('AllResourcesController', ['$scope', 'Resources', '$http', '$window', 'Analytics',
+	function($scope, Resource, $http, $window, Analytics) {
 		//$scope.items = Resource.query();
 		$scope.enableFilter = true;
+		Analytics.trackPage('/podcasts', 'All Podcasts');
 
 		$scope.getResources = function () {
         $http.get('/resource-list/' + $scope.currentPage).success(function (response) {

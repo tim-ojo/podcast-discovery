@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('discover').controller('AddResourceController', ['$scope', 'Resources', '$state', 'Authentication', '$window', '$http',
-	function($scope, Resource, $state, auth, $window, $http) {
+angular.module('discover').controller('AddResourceController', ['$scope', 'Resources', '$state', 'Authentication', '$window', '$http', 'Analytics',
+	function($scope, Resource, $state, auth, $window, $http, Analytics) {
+		Analytics.trackPage('/new', 'New Resource');
 		$scope.resource = new Resource();
 
     // defaults

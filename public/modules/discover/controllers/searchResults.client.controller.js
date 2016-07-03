@@ -1,7 +1,9 @@
 'use strict';
 
-angular.module('discover').controller('SearchResultsController', ['$scope', '$state', '$stateParams', '$http',
-	function($scope, $state, $stateParams, $http) {
+angular.module('discover').controller('SearchResultsController', ['$scope', '$state', '$stateParams', '$http', 'Analytics',
+	function($scope, $state, $stateParams, $http, Analytics) {
+
+		Analytics.trackPage('/search', 'search');
 
 		$scope.getSearchResults = function () {
       if ($stateParams.query !== '')

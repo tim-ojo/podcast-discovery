@@ -2,6 +2,7 @@
 
 module.exports = {
 	db: 'mongodb://localhost/podcast-discovery-dev',
+	esURL: 'localhost:9200',
 	app: {
 		title: 'podcast-discovery - Development Environment'
 	},

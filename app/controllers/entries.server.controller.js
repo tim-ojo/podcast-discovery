@@ -6,10 +6,11 @@
 var mongoose = require('mongoose'),
     Entry = mongoose.model('Entry'),
     elasticsearch = require('elasticsearch'),
-    errorHandler = require('./errors.server.controller');
+    errorHandler = require('./errors.server.controller'),
+    config = require('../../config/config');
 
 var client = new elasticsearch.Client({
-  host: 'localhost:9200'
+  host: config.esURL
 });
 
 function index(entry) {

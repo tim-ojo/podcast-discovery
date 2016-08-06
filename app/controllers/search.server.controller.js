@@ -8,10 +8,11 @@ var mongoose = require('mongoose'),
     striptags = require('striptags'),
     Entry = mongoose.model('Entry'),
     Resource = mongoose.model('Resource'),
-    errorHandler = require('./errors.server.controller');
+    errorHandler = require('./errors.server.controller'),
+    config = require('../../config/config');
 
 var client = new elasticsearch.Client({
-  host: 'localhost:9200'
+  host: config.esURL
 });
 
 /**

@@ -20,7 +20,7 @@ MongoClient.connect(config.db, function(err, mongoclient) {
 });
 
 var client = new elasticsearch.Client({
-  host: 'localhost:9200'
+  host: config.esURL
 });
 
 function isNotInNaughtyList(topic){

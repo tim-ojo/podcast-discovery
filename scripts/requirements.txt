@@ -1,0 +1,6 @@
+requests
+feedparser
+pymongo
+nltk
+elasticsearch
+

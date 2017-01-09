@@ -1,0 +1,72 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      - VIRTUAL_PORT=3000
+  app:
+    restart: always
+    build: .
+    container_name: podcastdiscovery.app
+    ports:
+     - "3000:3000"
+     - "35729:35729"
+    links:
+     - elasticsearch
+    environment:
+     - NODE_ENV=development
+     - DB_1_PORT_27017_TCP_ADDR=db
+     - ES_URL=elasticsearch
+     - VIRTUAL_HOST=www.podcastdiscovery.net,podcastdiscovery.net
+     - VIRTUAL_PROTO=http   # should be http even if you use https to the proxy, because node.js uses http!
+    depends_on:
+     - db
+    volumes_from:
+     - app-data
+  app-data:
+    build: .
+    entrypoint: /bin/true
+    volumes:
+     - ./:/opt/podcastdiscovery
+     - /opt/podcastdiscovery/node_modules
+     - /opt/podcastdiscovery/public
+     - /opt/podcastdiscovery/uploads
+  db:
+    image: mongo:3.2
+    restart: always
+    ports:
+     - "27017:27017"
+    volumes_from:
+      - db-data
+  db-data:
+    image: mongo:3.2
+    volumes:
+      - /data/db
+      - /var/lib/mongodb
+      - /var/log/mongodb
+    entrypoint: /bin/true
+  elasticsearch:
+    cap_add:
+      - IPC_LOCK
+    environment:
+      - ES_HEAP_SIZE=1g
+    image: elasticsearch:latest
+    mem_limit: 1g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - esdata:/usr/share/elasticsearch/data  	
+volumes:
+  esdata:
+    driver: local

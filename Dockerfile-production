@@ -1,19 +1,16 @@
 # Build:
-# docker build -t podcastdiscovery.app .
+# docker build -t podcastdiscovery.app -f Dockerfile-production .
 #
 # Run:
 # docker run -it podcastdiscovery.app
 #
 # Compose:
-# docker-compose up -d
+# docker-compose -f docker-compose-production.yml up -d
 
 FROM ubuntu:14.04
 
-# 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload, 8080 = node-inspector
-EXPOSE 80 443 3000 35729 8080
-
-# Set development environment as default
-ENV NODE_ENV development
+# 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload
+EXPOSE 80 443 3000 35729
 
 # Install Utilities
 RUN apt-get update -q  \
@@ -48,12 +45,15 @@ WORKDIR /opt/podcastdiscovery
 # when the local package.json file changes.
 # Install npm packages
 COPY package.json /opt/podcastdiscovery/package.json
-RUN npm install --quiet && npm cache clean
+RUN NODE_ENV=development npm install --quiet && npm cache clean
 
 # Install bower packages
 COPY bower.json /opt/podcastdiscovery/bower.json
 COPY .bowerrc /opt/podcastdiscovery/.bowerrc
 RUN bower install --quiet --allow-root --config.interactive=false
+
+# Set development environment as default
+ENV NODE_ENV production
 
 COPY . /opt/podcastdiscovery
 

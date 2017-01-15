@@ -10,7 +10,7 @@ from time import mktime
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-client = MongoClient()
+client = MongoClient('mongodb://podcastdiscovery_db_1:27017/')
 db = client['podcast-discovery']
 
 work_queue = [] # should be declared in __main__?
@@ -36,7 +36,7 @@ def searchAndAddToWorkQ(searchTerm):
 
             if existing is None and "Technology" in podcast_result["genres"] and releaseDate > (datetime.datetime.now() - timedelta(days=731)):
                 work_queue.append(podcast_result)
-                print('adding to work_queue: {}'.format(podcast_result['trackName']))
+                print('adding to work_queue: {}'.format(podcast_result['trackName'].encode('utf-8')))
 
         print('New work_queue size: {}'.format(len(work_queue)))
 
@@ -46,7 +46,7 @@ def readRSSAndStore(podcast_result):
     if parsed_feed.channel.get('language') is not None and parsed_feed.channel.language.lower() != 'en-us' and parsed_feed.channel.language.lower() != 'en':
         return
 
-    print('Downloaded RSS Feed for {} from {}. Number of entries is {}'.format(podcast_result['trackName'], podcast_result['feedUrl'], len(parsed_feed.entries)))
+    print('Downloaded RSS Feed for {} from {}. Number of entries is {}'.format(podcast_result['trackName'].encode('utf-8'), podcast_result['feedUrl'], len(parsed_feed.entries)))
 
     lastPublishDate = datetime.datetime.utcnow()
     if parsed_feed.channel.get('published_parsed') is not None:
@@ -66,7 +66,6 @@ def readRSSAndStore(podcast_result):
             "description" : parsed_feed.channel.get('summary'),
             "lastPublishDate" : lastPublishDate,
             "authors" : [ parsed_feed.channel.get('author') ],
-            "createdBy" : pdc_oid,
             "createdOn" : datetime.datetime.utcnow(),
             "lastModifiedOn" : datetime.datetime.utcnow(),
             "entryCount" : len(parsed_feed.entries)
@@ -95,9 +94,9 @@ def readRSSAndStore(podcast_result):
 
 if __name__ == '__main__':
 
-    pdc_oid = getCrawlerOid()
+    #pdc_oid = getCrawlerOid()
 
-    searchTerms = ['javascript', 'python', 'ruby', 'microsoft', 'objective+c', 'mobile+development', 'software+development', 'java', 'php', 'devops', 'angularjs', 'front+end+development', 'debug', 'reactjs', 'programming+language', 'node', 'asp.net', 'iot', 'machine+learning']
+    searchTerms = ['javascript', 'python']
 
     # crawl web, add podcasts to work_queue
     for searchTerm in searchTerms:

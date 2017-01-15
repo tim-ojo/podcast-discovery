@@ -13,17 +13,17 @@ from collections import Counter, defaultdict
 from operator import itemgetter
 from elasticsearch import Elasticsearch
 
-client = MongoClient()
+client = MongoClient('mongodb://podcastdiscovery_db_1')
 db = client['podcast-discovery']
-es = Elasticsearch()
+es = Elasticsearch(['podcastdiscovery_elasticsearch_1'])
 
 tokenizer = RegexpTokenizer(r'\w+')
 
 wikipediaset = set()
 def loadWikipediaSet():
-    wikipediaset = set([line.rstrip('\n') for line in open('wikipedia/wikipedia-1.txt')])
-    wikipediaset = wikipediaset | set([line.rstrip('\n') for line in open('wikipedia/wikipedia-2.txt')])
-    wikipediaset = wikipediaset | set([line.rstrip('\n') for line in open('wikipedia/wikipedia-3.txt')])
+    wikipediaset = set([line.rstrip('\n') for line in open('wikipedia/wikipedia-1.txt', encoding='utf-8')])
+    wikipediaset = wikipediaset | set([line.rstrip('\n') for line in open('wikipedia/wikipedia-2.txt', encoding='utf-8')])
+    wikipediaset = wikipediaset | set([line.rstrip('\n') for line in open('wikipedia/wikipedia-3.txt', encoding='utf-8')])
 
     podcast_stopwords = ['episode', 'show', 'week', 'today', 'talk', 'talks', 'talked', 'discuss', 'guys', 'guest', 'joined', 'joining', 'welcome', 'also', 'asks', 'much', 'listen', 'download', 'notes', 'podcast']
 

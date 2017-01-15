@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/podcast-discovery-dev',
-	esURL: 'localhost:9200',
+	db: 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/podcast-discovery',
+	esURL: process.env.ES_URL || 'localhost:9200',
 	app: {
 		title: 'podcast-discovery - Development Environment'
 	},

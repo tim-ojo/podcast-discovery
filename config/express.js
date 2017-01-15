@@ -28,7 +28,8 @@ module.exports = function(db) {
 	var app = express();
 
 	// Globbing model files
-	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
+	var modelFiles = config.getGlobbedFiles('./app/models/**/*.js');
+	modelFiles.forEach(function(modelPath) {
 		require(path.resolve(modelPath));
 	});
 
@@ -91,7 +92,7 @@ module.exports = function(db) {
 		resave: true,
 		secret: config.sessionSecret,
 		store: new mongoStore({
-			db: db.connection.db,
+			mongooseConnection: db.connection,
 			collection: config.sessionCollection
 		})
 	}));
@@ -114,7 +115,8 @@ module.exports = function(db) {
 	app.use(express.static(path.resolve('./public')));
 
 	// Globbing routing files
-	config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
+	var routeFiles = config.getGlobbedFiles('./app/routes/**/*.js');
+	routeFiles.forEach(function(routePath) {
 		require(path.resolve(routePath))(app);
 	});
 

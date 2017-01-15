@@ -22,7 +22,7 @@ services:
     environment:
      - NODE_ENV=development
      - DB_1_PORT_27017_TCP_ADDR=db
-     - ES_URL=elasticsearch
+     - ES_URL=podcastdiscovery_elasticsearch_1:9200
      - VIRTUAL_HOST=www.podcastdiscovery.net,podcastdiscovery.net
      - VIRTUAL_PROTO=http   # should be http even if you use https to the proxy, because node.js uses http!
     depends_on:
@@ -55,7 +55,7 @@ services:
     cap_add:
       - IPC_LOCK
     environment:
-      - ES_HEAP_SIZE=1g
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
     image: elasticsearch:latest
     mem_limit: 1g
     ulimits:

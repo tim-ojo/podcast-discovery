@@ -15,6 +15,9 @@ EXPOSE 80 443 3000 35729
 # Install Utilities
 RUN apt-get update -q  \
  && apt-get install -yqq \
+ nano \
+ tar \
+ wget \
  curl \
  git \
  ssh \
@@ -22,10 +25,19 @@ RUN apt-get update -q  \
  make \
  build-essential \
  libkrb5-dev \
+ dialog \
+ net-tools \
+ software-properties-common \
  sudo \
  apt-utils \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN add-apt-repository universe
+
+RUN apt-get -yqq update
+
+RUN apt-get install -y python python3 python3-pip python-pip
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -

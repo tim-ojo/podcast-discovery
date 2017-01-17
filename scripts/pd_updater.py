@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from time import mktime
 
-client = MongoClient()
+client = MongoClient('mongodb://podcastdiscovery_db_1')
 db = client['podcast-discovery']
 
 cursor = db.resources.find()

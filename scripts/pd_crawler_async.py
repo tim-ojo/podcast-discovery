@@ -40,7 +40,7 @@ async def addPodcastsToWorkQ(session):
                     work_queue.append(podcast_result)
                     print('adding to work_queue: {}'.format(podcast_result['trackName']))
 
-    searchTerms = ['javascript', 'python', 'ruby', 'microsoft', 'objective+c', 'mobile+development', 'software+development', 'java', 'php', 'devops', 'angularjs', 'front+end+development', 'debug', 'reactjs', 'programming+language', 'node', 'asp.net', 'iot', 'machine+learning']
+    searchTerms = ['javascript', 'python', 'ruby', 'microsoft', 'objective+c', 'mobile+development', 'software+development', 'java', 'php', 'devops', 'angularjs', 'front+end+development', 'debug', 'reactjs', 'programming+language', 'node', 'asp.net', 'iot', 'machine+learning', 'data+science']
 
     res, _ = await asyncio.wait([ searchItunesForTerm(searchTerm, session) for searchTerm in searchTerms ])
 

@@ -57,6 +57,8 @@ services:
       - IPC_LOCK
     environment:
       - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ports:
+      - "9200:9200"
     image: elasticsearch:latest
     mem_limit: 1g
     ulimits:
@@ -71,4 +73,3 @@ services:
 volumes:
   esdata:
     driver: local
-    

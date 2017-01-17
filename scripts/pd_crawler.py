@@ -66,6 +66,7 @@ def readRSSAndStore(podcast_result):
             "description" : parsed_feed.channel.get('summary'),
             "lastPublishDate" : lastPublishDate,
             "authors" : [ parsed_feed.channel.get('author') ],
+            "createdBy" : pdc_oid,
             "createdOn" : datetime.datetime.utcnow(),
             "lastModifiedOn" : datetime.datetime.utcnow(),
             "entryCount" : len(parsed_feed.entries)
@@ -94,9 +95,9 @@ def readRSSAndStore(podcast_result):
 
 if __name__ == '__main__':
 
-    #pdc_oid = getCrawlerOid()
+    pdc_oid = getCrawlerOid()
 
-    searchTerms = ['javascript', 'python']
+    searchTerms = ['javascript', 'python', 'ruby', 'microsoft', 'objective+c', 'mobile+development', 'software+development', 'java', 'php', 'devops', 'angularjs', 'front+end+development', 'debug', 'reactjs', 'programming+language', 'node', 'asp.net', 'iot', 'machine+learning', 'data+science']
 
     # crawl web, add podcasts to work_queue
     for searchTerm in searchTerms:
